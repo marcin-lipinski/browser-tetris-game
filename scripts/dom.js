@@ -1,8 +1,8 @@
-export const gamaBoard = document.getElementsByClassName("game-board")[0];
+export const gameBoard = document.getElementsByClassName("game-board")[0];
 export const nextBlockPreview = document.getElementsByClassName("next-block")[0];
 export const body = document.getElementsByTagName("body")[0];
-export const boardTiles= []; //wiersz, kolumna
-export const nextBlockPreviewTiles= []; //wiersz, kolumna
+export const boardTiles= [];
+export const nextBlockPreviewTiles= [];
 export const startGameButton = document.getElementsByClassName("start-game-button")[0];
 export const enterScreenBackground = document.getElementsByClassName("background")[0];
 export const enterScreen = document.getElementsByClassName("info-screen")[0];
@@ -20,40 +20,26 @@ exitEnterScreenButton.addEventListener("click", ()=>{
     enterScreen.style.animation = "slideLeft 0.4s 0s 1 ease-in-out forwards";
 })
 
-//getting which color was clickes
+//getting which color was clicked
 colorChoose.forEach((color)=>{
     color.addEventListener("click", function(){
         chosenColor = color.classList[1].toString();
     })
 })
 
-//game board generating
-function gameBoardGenerating(){
-    for(let i = 0; i<20; i++){
+//generating main board and nextBlock board function
+function boardGenerating(rows, columns, type, section){
+    for(let i = 0; i<rows; i++){
         let tempAr = [];
-        for(let j = 0; j<10; j++){
+        for(let j = 0; j<columns; j++){
             let newBlock = document.createElement("div");
             newBlock.classList.add("gameblock");
-            gamaBoard.appendChild(newBlock);
+            type.appendChild(newBlock);
             tempAr.push(newBlock);
         }
-        boardTiles.push(tempAr);
+        section.push(tempAr);
     }
 }
 
-//next block preview board generating
-function previewGenerating(){
-    for(let i = 0; i<4; i++){
-        let tempAr = [];
-        for(let j = 0; j<3; j++){
-            let newBlock = document.createElement("div");
-            newBlock.classList.add("gameblock");
-            nextBlockPreview.appendChild(newBlock);
-            tempAr.push(newBlock);
-        }
-        nextBlockPreviewTiles.push(tempAr);
-    }
-}
-
-gameBoardGenerating();
-previewGenerating();
+boardGenerating(20, 10, gameBoard, boardTiles); //game board generating
+boardGenerating(4, 3, nextBlockPreview, nextBlockPreviewTiles); //next block preview board generating

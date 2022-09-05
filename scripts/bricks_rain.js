@@ -1,6 +1,7 @@
 const brickImage = ["images/T.png", "images/I.png", "images/J.png", "images/L.png", "images/O.png", "images/S.png", "images/Z.png"];
 const bricksDropContainer = document.getElementsByClassName("bricks-drop-container")[0];
 
+//backgorund bricks rain animation
 function renderBrick(bricksDropContainer){
     const brickContainer = document.createElement("div");
     const img = document.createElement("img");
@@ -19,8 +20,9 @@ function renderBrick(bricksDropContainer){
     setTimeout(renderBrick, 1000, bricksDropContainer);
 }
 
-
+//removing a block if it goes outside a screen
 function removeDiv(div){
     bricksDropContainer.removeChild(div)
 }
+
 renderBrick(bricksDropContainer);

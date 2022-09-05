@@ -123,7 +123,7 @@ function endGame(){
     dom.enterScreen.style.animation = "slideRight 0.4s 0s 1 ease-in-out forwards";                  
 }
 
-//checking is one of rows completed and can be cleared
+//checking if one of rows is completed and can be cleared
 function checkIsRowCompleted(){
     let rowsToClear = [];
     for(let i = 0; i<=19; i++){
@@ -135,7 +135,6 @@ function checkIsRowCompleted(){
             }
         }
         if(isCompleted){
-            //wybielanie rzędu, usunięcie klasy taken, przesunięcie wszystkiego w dól
             rowsToClear.push(i);
         }
     }
@@ -165,7 +164,7 @@ function checkIsRowCompleted(){
     dom.userScore.innerHTML = `${score}`;
 }
 
-//drawing blocks
+//drawing a block
 function drawBlocks(){
     if(!nextBlock) currentBlock = new blockClasses[Math.floor(Math.random() * blockClasses.length)](colors[dom.chosenColor].pallete[Math.floor(Math.random()*5)]);
     else currentBlock = nextBlock;
@@ -173,7 +172,7 @@ function drawBlocks(){
     addPreviewSight(nextBlock);
 }
 
-//adding block to preview
+//adding a block to preview
 function addPreviewSight(nextBlock){
     for(let i = 0; i<4; i++){
         for(let j = 0; j<3; j++){

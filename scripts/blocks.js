@@ -1,5 +1,6 @@
 import {boardTiles} from "./dom.js";
 
+//checking if block can be moved (left or right)
 function canMove(blocks, dir){
     for(let i = 0; i< 4; i++){
         if(blocks[i][1] + dir < 0 || blocks[i][1] + dir > 9) return false;
@@ -8,6 +9,7 @@ function canMove(blocks, dir){
     return true;
 }
 
+//checking is it possible to rotate a block
 function checkIsRotationPossible(arr){
     for(let i = 0; i<4; i++){
         if(arr[i][0] > 19) return false;
@@ -17,6 +19,7 @@ function checkIsRotationPossible(arr){
     return true;
 }
 
+//rotating a block if it is possible
 function rotationConfirmed(prev, next, color){
     
     for(let i = 3; i>=0;i--){
@@ -28,6 +31,7 @@ function rotationConfirmed(prev, next, color){
     }
 }
 
+//parent class
 class brick{
     constructor(color){
         this.color = color;
@@ -56,12 +60,14 @@ class brick{
     }
 }
 
+//child classes
 class I extends brick{
     constructor(color){
         super(color);
         this.blocks = [[-1, 5], [-2, 5], [-3, 5], [-4, 5]];
         this.previewBlocks = [[3, 1], [2, 1], [1, 1], [0, 1]];
     }
+    //looking for next position if player wants to rotate a block to check is it possible
     findNext(dir, position){
         if(dir == 1 && position == "up" || dir == -1 && position == "right") return [[this.blocks[0][0], this.blocks[0][1]], [this.blocks[1][0] + 1, this.blocks[1][1] - 1], [this.blocks[2][0] + 2, this.blocks[2][1] - 2], [this.blocks[3][0] + 3, this.blocks[3][1] - 3]];
         if(dir == 1 && position == "left" || dir == -1 && position == "up") return [[this.blocks[0][0], this.blocks[0][1]], [this.blocks[1][0] + 1, this.blocks[1][1] + 1], [this.blocks[2][0] + 2, this.blocks[2][1] + 2], [this.blocks[3][0] + 3, this.blocks[3][1] + 3]];

@@ -14,17 +14,17 @@ html, body, .background{
 
 body{
     background-color: #9980AA;
+}
+
+body, .background, .info-screen, .color-container, .board, .guide{
     display: flex;
-    justify-content: center;
-    align-items: center;    
+    align-items: center;
+    justify-content: center; 
 }
 
 .background{
     background-color: rgba(24, 25, 35, 0.9);
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;    
+    position: absolute;  
     z-index: 1;
     pointer-events: none;
 }
@@ -34,10 +34,7 @@ body{
     width: 450px;
     height: 250px;
     border-radius: 15px;
-    display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     margin: auto;
     text-align: center;
 }
@@ -50,9 +47,7 @@ body{
 }
 
 .color-container{
-    display: flex;
     justify-content: space-around;
-
 }
 
 .theme-color{
@@ -69,37 +64,20 @@ body{
     border: 1px solid white;
 }
 
+.red, .blue, .yellow{
+    background-size: 400% 400%;
+}
+
 .red{
     background: linear-gradient(-45deg, #ef1c10, #c0160d, #901009, #600b06);
-    background-size: 400% 400%;
 }
 
 .blue{
     background: linear-gradient(-45deg, #78cded, #35b4e4, #1889b4, #0f5671);
-	background-size: 400% 400%;
 }
 
 .yellow{
     background: linear-gradient(-45deg, #fde29a, #fdd671, #fdd368, #e3ba4f);
-	background-size: 400% 400%;
-}
-
-@keyframes gradient {
-	0% {
-		background-position: 0% 25%;
-	}
-    25%{
-        background-position: 25% 25%;
-    }
-	50% {
-		background-position: 25% 50%;
-	}
-    75%{
-        background-position: 50% 75%;
-    }
-	100% {
-		background-position: 75% 100%;
-	}
 }
 
 .theme-color:hover{
@@ -140,9 +118,7 @@ hr{
     background-color: white;
     height: 700px;
     width: 600px;
-    display: flex;
     justify-content: space-between;
-    align-items: center;
     border: 5px solid rgba(73, 76, 107, 1);
 }
 
@@ -154,9 +130,7 @@ hr{
     background-color: pink;
     height: 100%;
     width: 30%;
-    display: flex;
     justify-content: space-evenly;
-    align-items: center;
     flex-direction: column;
 }
 
@@ -302,6 +276,24 @@ hr{
     to{
         transform: rotate(360deg);
     }
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 25%;
+	}
+    25%{
+        background-position: 25% 25%;
+    }
+	50% {
+		background-position: 25% 50%;
+	}
+    75%{
+        background-position: 50% 75%;
+    }
+	100% {
+		background-position: 75% 100%;
+	}
 }
 
 @media screen and (min-width: 590px){
