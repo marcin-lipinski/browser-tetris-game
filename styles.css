@@ -1,0 +1,348 @@
+@import url('https://fonts.googleapis.com/css2?family=Play&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html, body, .background{
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+body{
+    background-color: #9980AA;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+
+.background{
+    background-color: rgba(24, 25, 35, 0.9);
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+    z-index: 1;
+    pointer-events: none;
+}
+
+.info-screen{    
+    background-color: rgba(73, 76, 107, 1);
+    width: 450px;
+    height: 250px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    text-align: center;
+}
+
+.info-screen-text{
+    font-family: 'Play', sans-serif;
+    font-size: 1.4rem;
+    color: white;
+    margin: auto 0;
+}
+
+.color-container{
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.theme-color{
+    margin-top: 5px;
+    pointer-events: all;
+    display: block;
+    height: 20px;
+    width: 40px;
+    background-color: #fff;
+    cursor: pointer;
+    background-size: 400% 400%;
+	animation: gradient 5s ease-in-out infinite alternate-reverse;
+    border-radius: 5px;
+    border: 1px solid white;
+}
+
+.red{
+    background: linear-gradient(-45deg, #ef1c10, #c0160d, #901009, #600b06);
+    background-size: 400% 400%;
+}
+
+.blue{
+    background: linear-gradient(-45deg, #78cded, #35b4e4, #1889b4, #0f5671);
+	background-size: 400% 400%;
+}
+
+.yellow{
+    background: linear-gradient(-45deg, #fde29a, #fdd671, #fdd368, #e3ba4f);
+	background-size: 400% 400%;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 25%;
+	}
+    25%{
+        background-position: 25% 25%;
+    }
+	50% {
+		background-position: 25% 50%;
+	}
+    75%{
+        background-position: 50% 75%;
+    }
+	100% {
+		background-position: 75% 100%;
+	}
+}
+
+.theme-color:hover{
+    transform: scale(1.2);
+}
+
+a:focus > .theme-color{
+    border-color: #242635;
+}
+
+hr{
+    margin: 5px 0;
+}
+
+.info-screen-button, .start-game-button{
+    font-size: 1.4rem;
+    font-family: 'Play', sans-serif;
+    height: 50px;
+    width: 150px;    
+    border-radius: 15px;
+    border-width: 0;
+    cursor: pointer;
+    pointer-events: all;
+    transition: transform 0.3s;
+    background-color: white;
+}
+
+.info-screen-button{
+    margin-bottom: auto;
+}
+
+.info-screen-button:hover, .start-game-button:hover{
+    transform: scale(1.1); 
+    animation: shine 0.3s 0s 1 linear forwards;   
+}
+
+.board{
+    background-color: white;
+    height: 700px;
+    width: 600px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 5px solid rgba(73, 76, 107, 1);
+}
+
+.guide{
+    font-size: 1.4rem;
+    font-family: 'Play', sans-serif;
+    text-align: center;
+    color: rgb(47, 49, 71);
+    background-color: pink;
+    height: 100%;
+    width: 30%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+}
+
+.start-game-button{
+    width: 85%;
+    height: 10%;
+}
+
+.game-board{
+    height: 90%;
+    width: 60%;
+    display: grid;
+    grid-template-columns: repeat(10, 10%);
+    grid-template-rows: repeat(20, 5%);
+    justify-content: center;
+    align-content: center;
+    margin: auto;
+    border: 5px solid rgba(73, 76, 107, 1);
+}
+
+.next-block{
+    height: 25%;
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(3, 33.33%);
+    grid-template-rows: repeat(4, 25%);
+    justify-content: center;
+    align-content: center;
+}
+
+.gameblock{
+    border: 1px solid rgb(226, 226, 226);
+    background-color: white;
+}
+
+.bricks-drop-container{
+    position: fixed;
+    z-index: -1;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+}
+
+.brick-container{
+    position: absolute;
+    top: 0;
+}
+
+.brick-container img{
+    position: absolute;
+    animation: rotate 6s 0s infinite linear forwards;
+}
+
+@keyframes disapear{
+    0%{
+        background-color: rgba(24, 25, 35, 0.9);
+    }
+    100%{
+        background-color: rgba(24, 25, 35, 0);
+    }
+}
+
+@keyframes apear{
+    0%{
+        background-color: rgba(24, 25, 35, 0);
+    }
+    100%{
+        background-color: rgba(24, 25, 35, 0.9);
+    }
+}
+
+@keyframes slideLeft{
+    0%{
+        transform: translateX(0);
+    }
+    100%{
+        transform: translateX(200%);
+        opacity: 0;
+    }
+}
+
+@keyframes slideRight{
+    0%{
+        transform: translateX(200%);
+    }
+    100%{
+        transform: translateX(0%);
+        opacity: 1;
+    }
+}
+
+@keyframes shine{
+    0%{
+        background: linear-gradient(90deg, white 0%, white 0%);
+    }
+    10%{
+        background: linear-gradient(90deg, white 0%, silver 10%, white 30%);
+    }
+    20%{
+        background: linear-gradient(90deg, white 0%, silver 20%, white 40%);
+    }
+    30%{
+        background: linear-gradient(90deg, white 0%, silver 30%, white 50%);
+    }
+    40%{
+        background: linear-gradient(90deg, white 10%, silver 40%, white 60%);
+    }
+    50%{
+        background: linear-gradient(90deg, white 20%, silver 50%, white 70%);
+    }
+    60%{
+        background: linear-gradient(90deg, white 30%, silver 60%, white 80%);
+    }
+    70%{
+        background: linear-gradient(90deg, white 40%, silver 70%, white 90%);
+    }
+    80%{
+        background: linear-gradient(90deg, white 50%, silver 80%);
+    }
+    90%{
+        background: linear-gradient(90deg, white 60%, silver 90%);
+    }
+    100%{
+        background: linear-gradient(90deg, white 0%);
+    }
+}
+
+@keyframes fall{
+    from{
+        top: -150px;
+        transform: scale(0.2);
+    }
+    to{
+        top: 110%;
+        transform: scale(0.1)
+    }
+}
+
+@keyframes rotate{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+@media screen and (min-width: 590px){
+    .game-board{
+        grid-template-columns: repeat(10, 10%);
+        grid-template-rows: repeat(20, 5%);
+    }
+}
+
+@media screen and (max-width: 530px) {
+    .board{
+        width: 95%;
+        height: 60%;
+    }
+}
+
+@media screen and (max-width: 1024px) and (max-height: 800px) and (min-width: 550px){
+    .board{
+        width: 45%;
+        height: 80%;
+    }
+}
+
+@media screen and (max-width: 405px){
+    .info-screen-text{
+        transform: scale(0.7);
+        padding: 0;
+    }
+    .info-screen-button{        
+        transform: scale(0.7);
+        margin-top: -15px;
+    }
+    .theme-color{
+        margin-top: 15px;
+        transform: scale(1.3);
+    }
+}
+
+@media screen and (max-width: 600px){
+    .info-screen{
+        width: 90%;
+        height: 40%;
+    }
+}
